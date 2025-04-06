@@ -1,5 +1,9 @@
 /* eslint-disable no-unused-vars */
 
+import { authFormSchema } from "@/lib/utils";
+import { Control } from "react-hook-form";
+import { AuthFormSchema } from "@/lib/utils";
+
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -8,16 +12,26 @@ declare type SearchParamProps = {
 // ========================================
 
 declare type SignUpParams = {
-  firstName: string;
-  lastName: string;
-  address1: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  dateOfBirth: string;
-  ssn: string;
+  firstName?: string;
+  lastName?: string;
+  address1?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  dateOfBirth?: string;
+  ssn?: string;
   email: string;
   password: string;
+};
+
+//form custom creation
+
+declare type FormFieldProps = {
+  label: string;
+  control:Control<z.infer<typeof AuthFormSchema>>; // Equivalent to: { email: string; password: string; }
+  name: FieldPath<z.infer<typeof AuthFormSchema>>;
+  placeholder: string;
+  type?:string;
 };
 
 declare type LoginUser = {

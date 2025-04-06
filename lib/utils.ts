@@ -1,4 +1,5 @@
 /* eslint-disable no-prototype-builtins */
+import { AccountTypes, CategoryCount, Transaction } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
@@ -195,7 +196,7 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? "Processing" : "Success";
 };
 
-export const authFormSchema = (type: string) => z.object({
+export const AuthFormSchema = (type: string) => z.object({
   // sign up
   firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
   lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
@@ -209,3 +210,8 @@ export const authFormSchema = (type: string) => z.object({
   email: z.string().email(),
   password: z.string().min(8),
 })
+
+// export const authFormSchema = z.object({
+//   email: z.string().email(),
+//   password: z.string().min(8),
+// })
